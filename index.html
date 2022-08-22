@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Inscription</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <form id="regForm" action="" method="post" autocomplete="off">
+    <h1 align=center>Inscription:</h1>
+
+    <div style="text-align:center;">
+      <span class="step" id="step-1">1</span>
+      <span class="step" id="step-2">2</span>
+    </div>
+
+    <div class="tab" id="tab-1">
+      <p>Information de l'Eleve:</p>
+
+      <input type="text" placeholder="Entrez un noms" name="content" id="nom" />
+      <input type="text" placeholder="Entrez un prenoms" name="content" id="prenom" />
+      <select name="" id="sexe">
+        <option value="">Sélctionnez le Sexe...</option>
+        <option value="Masculin">Masculin</option>
+        <option value="Feminin">Feminin</option>
+      </select>
+      <input type="text" placeholder="Entrez le lieu de naissance" name="content" id="lieuNaiss" />
+      <input type="date" placeholder="" name="content" id="date" />
+      <select name="classe" id="classe">
+        <option value="">Sélctionnez le Classe...</option>
+        <option value="6ème">6ème</option>
+        <option value="5ème">5ème</option>
+        <option value="4ème">4ème</option>
+        <option value="3ème">3ème</option>
+        <option value="2nde">2nde</option>
+        <option value="1ère">1ère</option>
+        <option value="Tle">Tle</option>
+      </select>
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(1, 2);">Suivant</div><a id="link" href="#modal">VOIR<a>
+      
+      </div>
+
+    </div>
+
+
+    <div class="tab" id="tab-2">  
+      <p>Information du Tuteur:</p>
+      <input type="text" placeholder="Entrez un noms" name="content" id="Tnom" />
+      <input type="text" placeholder="Entrez un prenoms" name="content" id="Tprenom" />
+      <input type="text" placeholder="Profession" name="content" id="TProfession" />
+      <input type="text" placeholder="Entrez le contact" name="content" id="Tcontact" />
+      <input type="text" placeholder="Adresse email" name="content" id="Temail" />
+      <div class="index-btn" onclick="run(2, 1);">Précédant</div>
+      <button class="index-btn" type="submit" name="submit" style="background: rgb(109, 109, 255);">Enregistrez</button>
+                
+    </div>
+
+  </form>
+
+<div class="view"  id="modal">
+  
+  <section class="inscr-list pos">
+    <h3>Liste d'Inscrit</h3>
+    <a href="#"><button type="button" class="modal-close" data-dismiss="modal">&times;</button></a>
+    <div class="list" id="inscr-list"></div>
+  </section>
+
+</div>
+
+  <script>
+    // Default tab
+    $(".tab").css("display", "none");
+    $("#tab-1").css("display", "block");
+
+    function run(hideTab, showTab) {
+      if (hideTab < showTab) { // If not press previous button
+        // Validation if press next button
+        var currentTab = 0;
+        x = $('#tab-' + hideTab);
+        y = $(x).find("input")
+        for (i = 0; i < y.length; i++) {
+          if (y[i].value == "") {
+            $(y[i]).css("background", "#ffdddd");
+            return false;
+          }
+        }
+      }
+
+      // Progress bar
+      for (i = 1; i < showTab; i++) {
+        $("#step-" + i).css("opacity", "1");
+      }
+
+      // Switch tab
+      $("#tab-" + hideTab).css("display", "none");
+      $("#tab-" + showTab).css("display", "block");
+      $("input").css("background", "#fff");
+    }
+
+
+
+
+// LOCALE STORAGE
+
+
+
+// localStorage.setItem("nom", "ink ");
+
+// document.getElementById("demo").innerHTML = localStorage.getItem("nom");
+
+
+
+// localStorage.removeItem("nom")
+
+
+  </script>
+
+  <script src="./main.js"></script>
+
+</body>
+
+</html>
+
+
+<!-- e.target.elements.nom.value  --- recupere le contenu du champ input via l'id -->
